@@ -23,17 +23,21 @@ class Solution {
         char[] tabref1 = ref1.toCharArray();
         char[] tabref2 = ref2.toCharArray();
         char[] tabref3 = ref3.toCharArray();
+        char[][] tabline = new char[][] { tabline1, tabline2, tabline3 };
+        char[][] tabref = new char[][] { tabref1, tabref2, tabref3 };
         // Write an answer using System.out.println()
         // To debug: System.err.println("Debug messages...");
 
         for (int l = 0; l < line1.length() / 3; l++) {
             for (int r = 0; r < ref1.length() / 3; r++) {
-                if (("" + tabline1[0 + 3 * l] + tabline1[1 + 3 * l] + tabline1[2 + 3 * l] + tabline2[0 + 3 * l]
-                        + tabline2[1 + 3 * l] + tabline2[2 + 3 * l] + tabline3[0 + 3 * l]
-                        + tabline3[1 + 3 * l] + tabline3[2 + 3 * l])
-                        .equals("" + tabref1[0 + 3 * r] + tabref1[1 + 3 * r] + tabref1[2 + 3 * r] + tabref2[0 + 3 * r]
-                                + tabref2[1 + 3 * r] + tabref2[2 + 3 * r] + tabref3[0 + 3 * r] + tabref3[1 + 3 * r]
-                                + tabref3[2 + 3 * r])) {
+                boolean troistour = true;
+                for (int li = 0; li < 3; li++) {
+                    String resul = "" + tabline[li][0 + 3 * l] + tabline[li][1 + 3 * l] + tabline[li][2 + 3 * l];
+                    String resulref = "" + tabref[li][0 + 3 * r] + tabref[li][1 + 3 * r] + tabref[li][2 + 3 * r];
+                    troistour &= resul.equals(resulref);
+
+                }
+                if (troistour) {
                     System.out.print(r);
                 }
 
