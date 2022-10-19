@@ -1,0 +1,121 @@
+
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    /**
+     * @param args
+     */
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        String n = in.nextLine();
+        System.err.println("n : " + n);
+        int nbis = Integer.parseInt(n);
+        // nbis = 1276543281;
+
+        // log10 du nombre pour trouver la longeur du tableau
+        nbis = nbis + 1;
+        double y = nbis;
+
+        System.err.println("Math.log10(" + y + ")=" + Math.log10(y));
+
+        int tablength = (int) Math.log10(nbis);
+        System.err.println("log int de tablenght :" + tablength);
+        int tablength1 = tablength + 1;
+        System.err.println("longueur du tableau :" + tablength1);
+
+        System.err.println("nbis : " + nbis);
+
+        int nd = 0;
+        int nu = 0;
+        nd = nbis / 10;
+        System.err.println("nd : " + nd);
+        nu = nbis % 10;
+        System.err.println("nu : " + nu);
+        if (nu == 9) {
+            nu++;
+            nu = nu % 10;
+            nd++;
+        }
+        if (nu < 9) {
+            nu++;
+        }
+
+        if (nd > nu) {
+            nu++;
+        }
+        int[] tabu1 = new int[tablength1];
+        while (nbis > 10) {
+            for (int i = 0; i < tabu1.length; i++) {
+                tabu1[i] = nbis % 10;
+                nbis = nbis / 10;
+                ;
+                System.err.println("nbis :" + nbis);
+                System.err.println("tabu1 : " + i + " = " + tabu1[i]);
+            }
+        }
+
+        System.err.println(" ");
+        // affichage avant invertion
+
+        for (int i = 0; i < tabu1.length; i++) {
+            System.err.println("&tabu1 :" + i + " = " + tabu1[i]);
+        }
+        System.err.println(" ");
+        // boucle inversion
+
+        for (int i = 0; i < tabu1.length / 2; i++) {
+            int a = 0;
+            a = tabu1[i];// a debut : tabu1[0]
+            tabu1[i] = tabu1[tabu1.length - 1 - i];//
+            tabu1[tabu1.length - 1 - i] = a;
+
+        }
+        // affichage apres inversion
+        for (int i = 0; i < tabu1.length; i++) {
+            System.err.println("@tabu1 :" + i + " = " + tabu1[i]);
+        }
+        System.err.println(" ");
+
+        for (int i = 0; i < tabu1.length - 1; i++) {
+
+            while (tabu1[i] > tabu1[i + 1]) { /// tabu1[0]=5:tabul[1]=6
+
+                tabu1[i + 1] = tabu1[i + 1] + 1;
+                System.err.println("*tabu1 :" + i + " = " + tabu1[i]);
+            }
+        }
+        System.err.println("touriste;");
+        for (int i = 0; i < tabu1.length; i++) {
+            System.err.println("solution");
+            System.out.print(tabu1[i]);
+        }
+        String nuS = Integer.valueOf(nu).toString();
+        String ndS = "" + nd;
+        // Write an answer using System.out.println()
+        // To debug: System.err.println("Debug messages...");
+
+        // System.out.println(ndS + nuS);
+    }
+}
+
+/*
+ * 1111111111111123456789
+ * 111111111123456799
+ * 111111111123456888
+ * 111111111123456889
+ * 111111111123456899
+ * 111111111123456999
+ * 111111111123457777
+ * 111111111123457778
+ * 111111111123457779
+ * 111111111123457788
+ * 111111111123457789
+ * 111111111123457799
+ */
