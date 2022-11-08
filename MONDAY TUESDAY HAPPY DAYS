@@ -1,0 +1,111 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+  public static void main(String args[]) {
+    Scanner in = new Scanner(System.in);
+    int leapYear = in.nextInt();
+    String sourceDayOfWeek = in.next();
+    String sourceMonth = in.next();
+    int sourceDayOfMonth = in.nextInt();
+    String targetMonth = in.next();
+    int targetDayOfMonth = in.nextInt();
+
+    // Write an answer using System.out.println()
+    // To debug: System.err.println("Debug messages...");
+
+    System.err.println("Given a start date with a known week day,\n" +
+        "your program must compute the day of the week\n" +
+        "at another date anytime in the same year.");
+    System.err.println("leapYear : " + leapYear);
+    System.err.println("sourceDayOfWeek : " + sourceDayOfWeek);
+    System.err.println("sourceMonth : " + sourceMonth);
+    System.err.println("sourceDayOfMonth : " + sourceDayOfMonth);
+    System.err.println("targetMonth : " + targetMonth);
+    System.err.println("targetDayOfMonth : " + targetDayOfMonth);
+    System.err.println("**************");
+    System.err.println(" ");
+
+    String[] tabmonth = new String[] { "default ", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+        "Nov", "Dec" };
+    String[] tabday = new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", };
+    int[] tabmax = new int[] { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    // modification pour l annee bixestile
+    if (leapYear == 1) {
+      tabmax[2] += 1;// resultat 28+1
+      System.err.println("isLeapYear :" + leapYear);
+      System.err.println("tabmax[2] :" + tabmax[2]);
+    }
+
+    int daydiff = 0;
+
+    // comparer mois
+   
+    System.err.println(" ");
+
+    // comparer soureDayOfWeek au tableau tabday
+    // Donner la valeur de sortie comme reference pour la boucle des jours
+
+    int daytab = 0;
+    for (int i = 0; i < tabday.length; i++) {
+      if (tabday[i].equals(sourceDayOfWeek)) {
+        daytab = i;// le tableau commence a compter depuis 0!
+      }
+    }
+    if (daytab > 0) {
+      System.err.println(sourceDayOfWeek + "  existe dans le tableau.");
+      System.err.println("tabday[i] : " + daytab);
+    }
+
+    int dayS = lebonmois(targetMonth,tabmonth, tabmax, targetDayOfMonth);
+    int dayT = lebonmois(sourceMonth,tabmonth, tabmax, sourceDayOfMonth);
+    System.err.println("dayS : " + dayS);
+    System.err.println("dayT : " + dayT);
+    System.err.println("dayTab :" + (daytab));
+    System.err.println("daytab : " + tabday[daytab]);
+
+    if (dayT > dayS) {
+      daydiff = (dayT) - (dayS);// +3 ou +4???
+      // daydiff = daydiff%7;
+      System.err.println("daydiff +: " + daydiff);
+    } else {
+      daydiff = dayS - dayT;
+      System.err.println("daydiff -: " + (daydiff));
+    }
+daydiff=dayS-dayT;
+    System.err.println("*****************");
+    System.err.println("recherche de valeur : " + daydiff );
+
+    int sol = daytab+7 + daydiff;
+    System.err.println("sol = daytab+daydiff :" + sol);
+    String solution = tabday[sol % tabday.length];
+    System.err.print(" essais solution : ");
+    System.out.println(solution);
+
+  }
+
+  static int lebonmois(String mois, String[] tab,int[]tabnumber, int day) {
+ int exist = 0;
+    for (int i = 0; i < tab.length; i++) {
+
+      if (tab[i].equals(mois)) {
+        exist = i;
+        System.err.println("exist :" + exist);
+      }
+    }
+
+    int sumMonth = 0;
+    for (int y = 0; y < exist; y++) {
+      sumMonth = sumMonth + tabnumber[y];
+    }
+    sumMonth+=day;
+    System.err.println("sumMonth : " + sumMonth);
+   return sumMonth%7;
+  }
+}
