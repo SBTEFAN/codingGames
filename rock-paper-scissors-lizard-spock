@@ -1,0 +1,69 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    public static void main(String args[]) {
+        /*
+         * ennonce de depart
+         * {
+         * Scanner in = new Scanner(System.in);
+         * int N = in.nextInt();
+         * for (int i = 0; i < N; i++) {
+         * int NUMPLAYER = in.nextInt();
+         * String SIGNPLAYER = in.next();
+         * }
+         */
+
+        Scanner in = new Scanner(System.in);
+        int N = in.nextInt();
+        for (int i = 0; i < N; i++) {
+            int NUMPLAYER = in.nextInt();
+            String SIGNPLAYER = in.next();
+            int Np=0;
+            Np = Np+NUMPLAYER;
+            System.err.println(Np);
+            String tabSignPlayer[] = new String[N];
+            String tabSignPlayerSum[] = new String[N];
+            int tabNumPlayer[] = new int[N];
+            System.err.println("NUMPLAYER : " + NUMPLAYER);
+            System.err.println("SIGNPLAYER : " + SIGNPLAYER);
+            tabSignPlayer[i] = SIGNPLAYER;
+            tabSignPlayerSum[i] += tabSignPlayer[i];
+            tabNumPlayer[i]+=NUMPLAYER;
+            System.err.println("tabSignPlayer : " + tabSignPlayer[i]);
+
+            System.err.println("tabSignPlayerSum : " + tabSignPlayerSum[i]);
+            System.err.println("tabNumPlayer : " + tabNumPlayer[i]);
+
+            // debut de recherche
+            System.err.println("*tabSignPlayer : " + Arrays.toString(tabSignPlayer));
+            System.err.println("*tabNumPlayer : " + Arrays.toString(tabNumPlayer));
+
+            System.err.println(" ************* ");
+
+            String tab[] = new String[N];
+
+            System.err.println("Entrez les éléments du tableau (Strings) : ");
+            for (int y = 0; y < N; y++) {
+                tab[y] = SIGNPLAYER;
+            }
+            System.err.println("tabSignPlayer : " + Arrays.toString(tabSignPlayer));
+            System.err.println("tabNumPlayer : " + Arrays.toString(tabNumPlayer));
+            System.err.println("Les éléments du tableau " + Arrays.toString(tab));
+
+            // fin de recherche
+        }
+        System.err.println("debut de solution : ");
+        System.err.println("N :" + N);
+        // Write an answer using System.out.println()
+        // To debug: System.err.println("Debug messages...");
+
+        System.out.println("1");
+    }
+}
